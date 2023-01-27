@@ -1,8 +1,11 @@
 import React from "react";
 import { BsSearch, BsFillBasketFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../redux/store";
 
 const Navbar = () => {
+  const { basket } = useSelector((state: RootState) => state.basket);
   return (
     <div className="flex justify-between items-center bg-black text-white p-2">
       <Link to="/">
@@ -30,7 +33,7 @@ const Navbar = () => {
         <Link to="/basket">
           <BsFillBasketFill />
         </Link>
-        <p>{0}</p>
+        <p>{basket?.length}</p>
       </div>
     </div>
   );

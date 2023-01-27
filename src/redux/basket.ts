@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface BasketI {
+interface BasketInitialStateI {
   basket: {
     id: string;
     title: string;
@@ -11,7 +11,7 @@ interface BasketI {
   }[];
 }
 
-interface PayloadI {
+interface BasketI {
   id: string;
   title: string;
   image: string;
@@ -21,18 +21,21 @@ interface PayloadI {
 
 const initialState = {
   basket: [],
-} as BasketI;
+} as BasketInitialStateI;
 
 const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<PayloadI>) => {
+    add: (state, action: PayloadAction<BasketI>) => {
       console.log("in action");
       state.basket = [...state.basket, action.payload];
     },
   },
 });
 
-export const basketActions = basketSlice.actions;
 export default basketSlice.reducer;
+export const basketActions = basketSlice.actions;
+export const getBasketTotal = (basket: BasketI[]): number => {
+  return basket?.reduce((amount: number, item) => item.price + amount, 0);
+};
