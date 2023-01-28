@@ -1,4 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { basketActions } from "../redux/basket";
+import Button from "./Button";
 
 interface ProductI {
   product: {
@@ -10,6 +13,10 @@ interface ProductI {
   };
 }
 const ProductInBasket = ({ product }: ProductI) => {
+  const dispatch = useDispatch();
+  const removeFromBasket = () => {
+    dispatch(basketActions.remove(product.id));
+  };
   return (
     <div className="flex items-center">
       <div className="mr-5">
@@ -26,9 +33,7 @@ const ProductInBasket = ({ product }: ProductI) => {
             })}
         </div>
 
-        <button className="border border-black bg-orange-500 text-black px-2 mt-2">
-          Add to Basket
-        </button>
+        <Button action={removeFromBasket} title="Remove item" />
       </div>
     </div>
   );

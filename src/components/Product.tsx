@@ -3,6 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { basketActions } from "../redux/basket";
+import Button from "./Button";
 interface ProductI {
   product: {
     id: string;
@@ -41,12 +42,7 @@ const Product = ({ product }: ProductI) => {
           })}
       </div>
       <img src={product.image} alt="book_cover" className="w-[100px]" />
-      <button
-        className="border border-black bg-orange-500 text-black px-2 mt-2"
-        onClick={addToBasket}
-      >
-        Add to Basket
-      </button>
+      <Button action={addToBasket} title="Add to Basket" />
     </div>
   );
 };

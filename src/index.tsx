@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Basket from "./pages/Basket";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/basket",
     element: <Basket />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 root.render(

@@ -31,6 +31,15 @@ const basketSlice = createSlice({
       console.log("in action");
       state.basket = [...state.basket, action.payload];
     },
+    remove: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
+      const index: number = state.basket.findIndex(
+        (el) => el.id === action.payload
+      );
+      let basketCp = state.basket;
+
+      if (index >= 0) basketCp.splice(index, 1);
+    },
   },
 });
 

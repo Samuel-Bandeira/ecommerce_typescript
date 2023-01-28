@@ -19,9 +19,12 @@ const Navbar = () => {
       </div>
 
       <div className="flex space-x-5">
-        <p>
-          Hello guest <span>Sign In</span>
-        </p>
+        <Link to="/login">
+          <p>
+            Hello guest <span>Sign In</span>
+          </p>
+        </Link>
+
         <p>
           Returns <span>& Orders</span>
         </p>
