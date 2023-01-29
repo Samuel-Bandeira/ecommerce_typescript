@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface FormI {
   email: string;
@@ -10,11 +11,13 @@ interface FormI {
 
 const SignInForm = () => {
   const { register, handleSubmit } = useForm<FormI>();
-
+  const navigate = useNavigate();
   const login = async (data: any) => {
-    const response = await axios.post("http://localhost:8080/auth", data);
+    const response = await axios.post("http://localhost:8080/auth", data, {
+      withCredentials: true,
+    });
 
-    if (response.data !== "error") console.log("authenticated");
+    if (response.data !== "error") navigate("/");
   };
 
   return (
