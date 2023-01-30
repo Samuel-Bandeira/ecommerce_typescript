@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
 import { basketActions } from "../redux/basket";
 import Button from "./Button";
 interface ProductI {
