@@ -29,7 +29,7 @@ const Product = ({ product }: ProductI) => {
   };
 
   return (
-    <div className="border flex flex-col items-center w-[350px] h-[350px] justify-center bg-white">
+    <div className="border flex flex-col items-center w-[340px] h-[340px] justify-center bg-white mb-10 p-5">
       <p>{product.title}</p>
       <p>$ {product.price}</p>
       <div className="flex text-orange-500">

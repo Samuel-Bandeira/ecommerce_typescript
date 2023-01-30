@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { getBasketTotal } from "../redux/basket";
+import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 const Subtotal = () => {
   const { basket } = useSelector((state: RootState) => state.basket);
-
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col bg-gray-200 px-10 py-5">
       <p>
@@ -14,9 +16,12 @@ const Subtotal = () => {
         <input type="checkbox" className="border border-black" />
         <p>This order contains a gift</p>
       </div>
-      <button className="border border-black text-black bg-orange-300 p-2">
-        Proceed to Checkout
-      </button>
+      <Button
+        action={() => {
+          navigate("/protected/payment");
+        }}
+        title="Proceed to Checkout"
+      />
     </div>
   );
 };
