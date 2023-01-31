@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className="flex space-x-5">
         <Link to="/login">
           <p>
-            Hello {Object.keys(user).length > 0 ? user.name : "guest"} Sign In
+            Hello {Object.keys(user).length > 0 ? user.name : "guest"} Sign I
           </p>
         </Link>
 
