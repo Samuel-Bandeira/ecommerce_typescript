@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import Login from "../pages/Login";
 import { RootState } from "../redux/store";
 
 const Root = () => {

@@ -18,7 +18,7 @@ const Subtotal = () => {
       </div>
       <Button
         action={() => {
-          navigate("/protected/payment");
+          navigate("/payment");
         }}
         title="Proceed to Checkout"
       />
