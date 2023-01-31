@@ -3,7 +3,8 @@ import Button from "./Button";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { userActions } from "../redux/user";
 interface FormI {
   email: string;
   password: string;
@@ -12,12 +13,21 @@ interface FormI {
 const SignInForm = () => {
   const { register, handleSubmit } = useForm<FormI>();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const login = async (data: any) => {
     const response = await axios.post("http://localhost:8080/auth", data, {
       withCredentials: true,
     });
 
-    if (response.data !== "error") navigate("/");
+    if (response.data !== "error") {
+      dispatch(
+        userActions.set({
+          user: response.data.user,
+          jwtToken: response.data.jwtToken,
+        })
+      );
+      navigate("/");
+    }
   };
 
   return (

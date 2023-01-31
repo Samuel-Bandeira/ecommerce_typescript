@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import basketReducer from "./basket";
-
+import userReducer from "./user";
 const store = configureStore({
   reducer: {
     basket: basketReducer,
+    user: userReducer,
   },
 });
 

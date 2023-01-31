@@ -17,29 +17,30 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/basket",
-    element: <Basket />,
-  },
-  {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/protected",
+    path: "*",
+    element: <div>Error</div>,
+  },
+  {
+    path: "/",
     element: <Root />,
     children: [
       {
-        path: "user",
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/user",
         element: <Navbar />,
       },
       {
         path: "payment",
         element: <Payment />,
       },
+      { path: "/basket", element: <Basket /> },
     ],
   },
 ]);
