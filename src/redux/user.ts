@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type InitialStateI = {
   user: {
+    id: number;
     email: string;
     name: string;
   };
@@ -9,10 +10,7 @@ type InitialStateI = {
 };
 
 const initialState = {
-  user: {
-    email: "",
-    name: "",
-  },
+  user: {},
   jwtToken: "",
 } as InitialStateI;
 

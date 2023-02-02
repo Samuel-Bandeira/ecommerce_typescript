@@ -8,6 +8,7 @@ interface BasketInitialStateI {
     image: string;
     price: number;
     rating: number;
+    quantity: number;
   }[];
 }
 
@@ -28,17 +29,31 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<BasketI>) => {
-      console.log("in action");
-      state.basket = [...state.basket, action.payload];
+      const productInBasket = state.basket.filter(
+        (product) => product.id == action.payload.id
+      )[0];
+
+      if (productInBasket == undefined)
+        state.basket.push({ ...action.payload, quantity: 1 });
+      else productInBasket.quantity += 1;
     },
     remove: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
-      const index: number = state.basket.findIndex(
-        (el) => el.id === action.payload
-      );
-      let basketCp = state.basket;
+      const productInBasket = state.basket.filter(
+        (product) => product.id == action.payload
+      )[0];
 
-      if (index >= 0) basketCp.splice(index, 1);
+      if (productInBasket.quantity > 1) productInBasket.quantity -= 1;
+      else {
+        let basketCp = state.basket;
+
+        const index: number = state.basket.findIndex(
+          (el) => el.id === action.payload
+        );
+        if (index >= 0) {
+          basketCp.splice(index, 1);
+          state.basket = basketCp;
+        }
+      }
     },
   },
 });

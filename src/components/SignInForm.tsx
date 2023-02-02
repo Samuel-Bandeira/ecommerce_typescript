@@ -10,23 +10,43 @@ interface FormI {
   password: string;
 }
 
+interface MockResponseI {
+  data:
+    | {
+        id: number;
+        email: string;
+        name: string;
+        jwtToken: string;
+      }
+    | "error";
+}
+
 const SignInForm = () => {
   const { register, handleSubmit } = useForm<FormI>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const login = async (data: any) => {
-    const response = await axios.post("http://localhost:8080/auth", data, {
-      withCredentials: true,
-    });
+    const response: MockResponseI = {
+      data: {
+        id: 1,
+        email: "samuel@testing.com",
+        name: "Samuel",
+        jwtToken: "sdsadaoswdjasdojOJ399djs9cdjf9jd9jfs9saasaaaaaaisjidjsidjs",
+      },
+    };
+    // const response = await axios.post("http://localhost:8080/auth", data, {
+    //   withCredentials: true,
+    // });
 
-    console.log(response.data)
+    console.log(response.data);
 
     if (response.data !== "error") {
       dispatch(
         userActions.set({
           user: {
+            id: response.data.id,
             email: response.data.email,
-            name: response.data.name
+            name: response.data.name,
           },
           jwtToken: response.data.jwtToken,
         })

@@ -10,6 +10,7 @@ interface ProductI {
     image: string;
     price: number;
     rating: number;
+    quantity: number;
   };
 }
 const ProductInBasket = ({ product }: ProductI) => {
@@ -25,6 +26,7 @@ const ProductInBasket = ({ product }: ProductI) => {
       <div>
         <p>{product.title}</p>
         <p>$ {product.price}</p>
+        <p>Qtd: {product.quantity}</p>
         <div className="flex text-orange-500">
           {Array(product.rating)
             .fill(0)
