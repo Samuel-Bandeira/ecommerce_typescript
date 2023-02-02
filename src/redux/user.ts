@@ -4,13 +4,15 @@ type InitialStateI = {
   user: {
     email: string;
     name: string;
-    password: string;
   };
   jwtToken: string;
 };
 
 const initialState = {
-  user: {},
+  user: {
+    email: "",
+    name: "",
+  },
   jwtToken: "",
 } as InitialStateI;
 

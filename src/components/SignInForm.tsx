@@ -19,10 +19,15 @@ const SignInForm = () => {
       withCredentials: true,
     });
 
+    console.log(response.data)
+
     if (response.data !== "error") {
       dispatch(
         userActions.set({
-          user: response.data.user,
+          user: {
+            email: response.data.email,
+            name: response.data.name
+          },
           jwtToken: response.data.jwtToken,
         })
       );

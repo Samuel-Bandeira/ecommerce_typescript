@@ -8,6 +8,7 @@ const Navbar = () => {
   const { basket } = useSelector((state: RootState) => state.basket);
   const { user } = useSelector((state: RootState) => state.user);
 
+  console.log("user:", user);
   return (
     <div className="flex justify-between items-center bg-black text-white p-2">
       <Link to="/">
@@ -23,7 +24,11 @@ const Navbar = () => {
       <div className="flex space-x-5">
         <Link to="/login">
           <p>
-            Hello {Object.keys(user).length > 0 ? user.name : "guest"} Sign I
+            Hello{" "}
+            {user != undefined && Object.keys(user).length > 0
+              ? user.name
+              : "guest"}{" "}
+            Sign I
           </p>
         </Link>
 
