@@ -4,7 +4,7 @@ import Products from "../components/Products";
 
 const Home = () => {
   return (
-    <div className="bg-blue-300 h-[1000px]">
+    <div className="bg-blue-300">
       <Navbar />
       <div className="h-[50px]"></div>
       <Products />
