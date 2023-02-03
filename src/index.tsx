@@ -26,21 +26,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
+    element: <Home />,
+  },
+  { path: "/basket", element: <Basket /> },
+  {
+    path: "/",
     element: <Root />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/user",
-        element: <Navbar />,
-      },
       {
         path: "payment",
         element: <Payment />,
       },
-      { path: "/basket", element: <Basket /> },
     ],
   },
 ]);

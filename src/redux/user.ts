@@ -5,13 +5,12 @@ type InitialStateI = {
     id: number;
     email: string;
     name: string;
+    lastName: string;
   };
-  jwtToken: string;
 };
 
 const initialState = {
   user: {},
-  jwtToken: "",
 } as InitialStateI;
 
 const userSlice = createSlice({
@@ -19,8 +18,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     set: (state, action: PayloadAction<InitialStateI>) => {
+      console.log("p:", action.payload);
       state.user = action.payload.user;
-      state.jwtToken = action.payload.jwtToken;
     },
   },
 });

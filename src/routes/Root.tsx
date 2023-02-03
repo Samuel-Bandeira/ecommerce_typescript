@@ -3,9 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import { RootState } from "../redux/store";
 
 const Root = () => {
-  const { jwtToken } = useSelector((state: RootState) => state.user);
+  const { jwt } = useSelector((state: RootState) => state.auth);
 
-  return <div>{jwtToken !== "" ? <Outlet /> : <Navigate to="/login" />}</div>;
+  return <div>{jwt ? <Outlet /> : <Navigate to="/login" />}</div>;
 };
 
 export default Root;

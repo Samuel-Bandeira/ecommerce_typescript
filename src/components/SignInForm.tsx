@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../redux/user";
+import { authActions } from "../redux/auth";
 interface FormI {
   email: string;
   password: string;
@@ -26,33 +27,46 @@ const SignInForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const login = async (data: any) => {
-    const response: MockResponseI = {
-      data: {
-        id: 1,
-        email: "samuel@testing.com",
-        name: "Samuel",
-        jwtToken: "sdsadaoswdjasdojOJ399djs9cdjf9jd9jfs9saasaaaaaaisjidjsidjs",
-      },
-    };
-    // const response = await axios.post("http://localhost:8080/auth", data, {
-    //   withCredentials: true,
-    // });
-
-    console.log(response.data);
-
-    if (response.data !== "error") {
-      dispatch(
-        userActions.set({
-          user: {
-            id: response.data.id,
-            email: response.data.email,
-            name: response.data.name,
-          },
-          jwtToken: response.data.jwtToken,
-        })
+    try {
+      const auth = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth`,
+        data
       );
+
+      const token = auth.data.access_token;
+      const id = auth.data.id;
+
+      const getUserResponse = await axios.get(
+        `${process.env.REACT_APP_API_URL}/user/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch(authActions.setToken(`${token}`));
+      dispatch(userActions.set(getUserResponse.data));
+
       navigate("/");
+    } catch (e) {
+      console.log("Login error");
+      // window.location.reload();
     }
+
+    // if (response.data !== "error") {
+    //   dispatch(
+    //     userActions.set({
+    //       user: {
+    //         id: response.data.id,
+    //         email: response.data.email,
+    //         name: response.data.name,
+    //       },
+    //       jwtToken: response.data.jwtToken,
+    //     })
+    //   );
+    //   navigate("/");
+    // }
   };
 
   return (
