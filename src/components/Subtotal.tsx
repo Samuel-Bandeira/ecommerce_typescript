@@ -9,7 +9,7 @@ const Subtotal = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
   const handleClick = () => {
-    if (Object.keys(user).length > 0) navigate("/checkout");
+    if (user) navigate("/checkout");
     else
       navigate("/login", {
         state: {

@@ -17,38 +17,25 @@ const Payment = () => {
   const { basket } = useSelector((state: RootState) => state.basket);
   const { user } = useSelector((state: RootState) => state.user);
 
-  const getUserAdditionalInformation = ({
-    id,
-    relations,
-  }: {
-    id: number;
-    relations: Array<String>;
-  }) => {
-    return {
-      id: id,
-      email: "samuel@testing.com",
-      name: "Samuel",
-      lastName: "Bandeira de Oliveira",
-      address: {
-        country: "Brazil",
-        street: "Rua 12 de julho",
-        number: "389",
-        city: "Fortaleza",
-        state: {
-          id: 1,
-          name: "Ceará",
-          code: "CE",
-        },
-        reference: "",
+  const userData = {
+    id: user!.id,
+    email: "samuel@testing.com",
+    name: "Samuel",
+    lastName: "Bandeira de Oliveira",
+    address: {
+      country: "Brazil",
+      street: "Rua 12 de julho",
+      number: "389",
+      city: "Fortaleza",
+      state: {
+        id: 1,
+        name: "Ceará",
+        code: "CE",
       },
-      paymentMethods: [],
-    };
+      reference: "",
+    },
+    paymentMethods: [],
   };
-
-  const userData = getUserAdditionalInformation({
-    id: user.id,
-    relations: ["address", "paymentMethods"],
-  });
 
   const removeFromBasket = (product: any) => {
     console.log(product);
@@ -56,7 +43,7 @@ const Payment = () => {
   };
 
   const handleAddPayment = () => {
-    navigate("/payment/add");
+    navigate("/card/add");
   };
   return (
     <div>
@@ -69,8 +56,9 @@ const Payment = () => {
 
         <div className="flex space-x-10 p-6 border-b-2">
           <p className="font-bold">Delivery Address</p>
+
           <div>
-            <p>{user.email}</p>
+            <p>{user!.email}</p>
             <p>{(userData.address.number + ", ", userData.address.street)}</p>
             <p>{userData.address.city + ", " + userData.address.state.code}</p>
           </div>

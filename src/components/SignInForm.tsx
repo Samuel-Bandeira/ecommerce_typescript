@@ -11,17 +11,6 @@ interface FormI {
   password: string;
 }
 
-interface MockResponseI {
-  data:
-    | {
-        id: number;
-        email: string;
-        name: string;
-        jwtToken: string;
-      }
-    | "error";
-}
-
 const SignInForm = () => {
   const { state } = useLocation();
 
@@ -34,7 +23,6 @@ const SignInForm = () => {
         `${process.env.REACT_APP_API_URL}/auth`,
         data
       );
-
       const token = auth.data.access_token;
       const id = auth.data.id;
 
@@ -46,9 +34,10 @@ const SignInForm = () => {
           },
         }
       );
+      console.log(getUserResponse.data);
 
       dispatch(authActions.setToken(`${token}`));
-      dispatch(userActions.set(getUserResponse.data));
+      dispatch(userActions.set({ user: getUserResponse.data }));
 
       if (state) {
         if (state.path === "/basket") navigate("/checkout");

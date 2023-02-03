@@ -1,25 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type InitialStateI = {
+interface InitialStateI {
   user: {
     id: number;
     email: string;
     name: string;
     lastName: string;
-  };
-};
+    
+    creditCards: {
+      brand: string;
+      cardName: string;
+      cardNumber: number;
+    }[];
+  } | null;
+}
 
-const initialState = {
-  user: {},
-} as InitialStateI;
+const initialState: InitialStateI = {
+  user: null,
+};
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     set: (state, action: PayloadAction<InitialStateI>) => {
-      console.log("p:", action.payload);
       state.user = action.payload.user;
+      console.log(state.user);
     },
   },
 });
