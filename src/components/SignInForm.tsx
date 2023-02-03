@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../redux/user";
 import { authActions } from "../redux/auth";
@@ -23,6 +23,8 @@ interface MockResponseI {
 }
 
 const SignInForm = () => {
+  const { state } = useLocation();
+
   const { register, handleSubmit } = useForm<FormI>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,25 +50,12 @@ const SignInForm = () => {
       dispatch(authActions.setToken(`${token}`));
       dispatch(userActions.set(getUserResponse.data));
 
-      navigate("/");
+      if (state) {
+        if (state.path === "/basket") navigate("/checkout");
+      } else navigate("/");
     } catch (e) {
       console.log("Login error");
-      // window.location.reload();
     }
-
-    // if (response.data !== "error") {
-    //   dispatch(
-    //     userActions.set({
-    //       user: {
-    //         id: response.data.id,
-    //         email: response.data.email,
-    //         name: response.data.name,
-    //       },
-    //       jwtToken: response.data.jwtToken,
-    //     })
-    //   );
-    //   navigate("/");
-    // }
   };
 
   return (
