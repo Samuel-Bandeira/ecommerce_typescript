@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Root from "./routes/Root";
 import Navbar from "./components/Navbar";
 import Payment from "./pages/Payment";
+import AddPaymentForm from "./pages/AddPaymentForm";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -36,6 +37,15 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <Payment />,
+      },
+      {
+        path: "payment",
+        children: [
+          {
+            path: "add",
+            element: <AddPaymentForm />,
+          },
+        ],
       },
     ],
   },

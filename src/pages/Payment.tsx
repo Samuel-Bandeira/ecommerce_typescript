@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { basketActions, getBasketTotal } from "../redux/basket";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 interface FormI {}
 
 const Payment = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { basket } = useSelector((state: RootState) => state.basket);
   const { user } = useSelector((state: RootState) => state.user);
 
@@ -39,31 +41,7 @@ const Payment = () => {
         },
         reference: "",
       },
-      paymentMethods: [
-        {
-          id: 1,
-          type: "card",
-          data: {
-            id: 1,
-            brand: "Mastercard",
-            numberEnd: 1111,
-            credit: true,
-            debit: false,
-            expiresAt: Date.now(),
-          },
-        },
-        {
-          id: 2,
-          type: "card",
-          data: {
-            id: 1,
-            brand: "Visa",
-            numberEnd: 2222,
-            credit: true,
-            debit: false,
-          },
-        },
-      ],
+      paymentMethods: [],
     };
   };
 
@@ -75,6 +53,10 @@ const Payment = () => {
   const removeFromBasket = (product: any) => {
     console.log(product);
     dispatch(basketActions.remove(product.id));
+  };
+
+  const handleAddPayment = () => {
+    navigate("/payment/add");
   };
   return (
     <div>
@@ -129,52 +111,22 @@ const Payment = () => {
         <div className="flex space-x-10 p-6 border-b-2">
           <p className="font-bold">Payment method</p>
           <div className="space-y-5">
-            <p className="font-bold">Card details</p>
-            <div className="flex items-center space-x-10">
-              <AiOutlineCreditCard />
-              <select name="payment_methods">
-                {userData.paymentMethods.map((paymentType, index) => {
-                  return (
-                    <option value={paymentType.data.brand} key={index}>
-                      {paymentType.data.brand +
-                        " " +
-                        userData.name +
-                        " ends with " +
-                        paymentType.data.numberEnd}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <p>MM/YY/CVC</p>
-              {/* <p>{userData.paymentMethods[0].data.expiresAt}</p> */}
+            <div className="flex items-center space-x-10 justify-center">
+              {userData.paymentMethods.length > 0 ? (
+                <select name="payment_methods">
+                  <option value="hello">hello</option>
+                </select>
+              ) : (
+                <Button
+                  title="Add payment method"
+                  action={handleAddPayment}
+                ></Button>
+              )}
             </div>
 
             <div className="border-2 p-5 w-[320px] flex flex-col items-center">
               <p>Order total: {getBasketTotal(basket)}</p>
-              <Button
-                title="Buy now"
-                action={() => {
-                  console.log({
-                    data: {
-                      //please implement quantity in the basket!
-                      products: basket.map((el) => {
-                        return {
-                          id: el.id,
-                          quant: el.quantity,
-                        };
-                      }),
-                      user: {
-                        id: userData.id,
-                      },
-                      payment: {
-                        methodId: userData.paymentMethods[0].id,
-                        totalValue: getBasketTotal(basket),
-                      },
-                    },
-                  });
-                }}
-              />
+              <Button title="Buy now" action={() => {}} />
             </div>
           </div>
         </div>
