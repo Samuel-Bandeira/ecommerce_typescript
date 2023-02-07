@@ -79,7 +79,7 @@ const Products = () => {
 
   return (
     <div>
-      <div className="flex mb-10 justify-around flex-wrap">
+      <div className="grid grid-cols-5 gap-5">
         {products.map((product, index) => {
           return <Product product={product} key={index} />;
         })}

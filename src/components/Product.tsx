@@ -1,6 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { basketActions } from "../redux/basket";
+import { IoIosArrowDown } from "react-icons/io";
 import Button from "./Button";
 interface ProductI {
   product: {
@@ -29,18 +30,41 @@ const Product = ({ product }: ProductI) => {
   };
 
   return (
-    <div className="border flex flex-col items-center w-[340px] h-[340px] justify-center bg-white mb-10 p-5">
-      <p>{product.title}</p>
-      <p>$ {product.price}</p>
-      <div className="flex text-orange-500">
-        {Array(product.rating)
-          .fill(0)
-          .map((_, index) => {
-            return <AiFillStar key={index} />;
-          })}
+    <div>
+      <div className="bg-[#f8f8f8] flex justify-center px-2 pt-8">
+        <img src={product.image} alt="book_cover" className="h-60" />
       </div>
-      <img src={product.image} alt="book_cover" className="w-[100px]" />
-      <Button action={addToBasket} title="Add to Basket" />
+      <div className="bg-white px-2">
+        <p className="text-[15px] ">{product.title}</p>
+        <p className="text-gray-500 text-[14px]">Edição {"português"}</p>
+        <p className="text-gray-500 text-[14px]">
+          por {"Collen Hoover e Priscila Catão"}
+        </p>
+        <div className="flex items-center space-x-1">
+          <p>4.8</p>
+          <div className="flex text-orange-500">
+            {Array(product.rating)
+              .fill(0)
+              .map((_, index) => {
+                return <AiFillStar key={index} />;
+              })}
+          </div>
+          <IoIosArrowDown size={"10px"} className="text-gray-500" />
+          <p>({"41.597"})</p>
+        </div>
+        <p className="font-bold text-teal-600 text-sm">Capa Comum</p>
+        <div className="flex items-center">
+          <p className="text-[13px]">R$</p>
+          <p className="text-xl">{product.price}</p>
+        </div>
+        <p className="text-sm">
+          Receba até <span className="font-bold">Quarta-feira, 8 de fev</span>{" "}
+          Frete GRÁTIS
+        </p>
+        <p>Idade: 13 anos e acima</p>
+      </div>
+
+      {/* <Button action={addToBasket} title="Add to Basket" /> */}
     </div>
   );
 };
