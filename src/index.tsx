@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Payment from "./pages/Payment";
 import AddPaymentForm from "./pages/AddPaymentForm";
 import Register from "./pages/Register";
+import ProductPage from "./pages/ProductPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,21 +20,30 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "login",
     element: <Login />,
   },
   {
     path: "*",
-    element: <div>Error</div>,
+    element: (
+      <div>
+        <p>Error</p>
+        <p>Page not found</p>
+      </div>
+    ),
   },
   {
-    path: "/",
+    path: "",
     element: <Home />,
   },
-  { path: "/basket", element: <Basket /> },
+  { path: "basket", element: <Basket /> },
   {
     path: "register",
     element: <Register />,
+  },
+  {
+    path: "product",
+    element: <ProductPage />,
   },
   {
     path: "/",

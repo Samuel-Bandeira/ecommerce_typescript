@@ -1,14 +1,68 @@
 import Product from "./Product";
 
+interface BookI {
+  id: number;
+  title: string;
+  authors: {
+    id: number;
+    name: string;
+  }[];
+  images: {
+    id: number;
+    bookId: number;
+    url: string;
+    cover: boolean;
+  }[];
+  price: number;
+  rating: number;
+  numberOfClientRatings: number;
+  description: {
+    id: number;
+    paragraphs: {
+      id: number;
+      descriptionId: number;
+      text: string;
+      position: number;
+    }[];
+  };
+  review: {
+    bookId: number;
+    text: string;
+    reviewer: string;
+  };
+  pageCount: number;
+  language: string;
+  publishingCompany: {
+    id: number;
+    name: string;
+  };
+  publishingDate: Date;
+  dimensions: {
+    id: number;
+    bookId: number;
+    width: number;
+    height: number;
+    depth: number;
+  };
+}
+
 const Products = () => {
   const products = [
     {
       id: "A39494AC",
-      title:
-        "It Starts with Us: A Novel (It Ends with Us Book 2) (English Edition)",
-      image: "https://m.media-amazon.com/images/I/71PNGYHykrL._AC_UL320_.jpg",
+      title: "It Starts with Us: A Novel (It Ends with Us Book 2)",
+      image: "https://m.media-amazon.com/images/I/71PNGYHykrL._AC_UL320_.jpg", //Image[] --> {bookId: number, url: string}
+      //authors: Authors[], --> {name: string, publishedBooks: Books[]}
       price: 67.9,
-      rating: 5,
+      rating: 5, //Dinâmico, muda a cada novo rating.
+      numberOfClientRatings: 19678,
+      // description: Description --> {paragraphs: Paragraph[], booksId: id} --> Paragraph { text: string, position: number};
+      //reviews: Review[] --> Review { bookRelated: bookId, text: "", reviewer: string };
+      pageCount: 336,
+      language: "Portuguese",
+      //publishingCompany: PublishCompany, --> { name: "Galera" }
+      //publishingDate: date;
+      //dimensions: Dimension --> {width: number, height: number, depth: number, bookId: id},
     },
     {
       id: "Ae39485A",
@@ -16,6 +70,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/31sB7XFqKWS.jpg",
       price: 30.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949D",
@@ -23,6 +78,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/81iqH8dpjuL._AC_UY218_.jpg",
       price: 34.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949E",
@@ -30,6 +86,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/91r5G8RxqfL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949F",
@@ -37,6 +94,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/91r5G8RxqfL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949G",
@@ -44,6 +102,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/91r5G8RxqfL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949H",
@@ -51,6 +110,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/91r5G8RxqfL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949I",
@@ -58,6 +118,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/813TDwBsihL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949J",
@@ -66,6 +127,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/61OEg3V-FTL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
     {
       id: "Ae33949K",
@@ -74,6 +136,7 @@ const Products = () => {
       image: "https://m.media-amazon.com/images/I/71BROqAwZtL._AC_UY218_.jpg",
       price: 31.9,
       rating: 5,
+      numberOfClientRatings: 19678,
     },
   ];
 
