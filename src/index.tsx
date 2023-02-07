@@ -13,6 +13,7 @@ import Payment from "./pages/Payment";
 import AddPaymentForm from "./pages/AddPaymentForm";
 import Register from "./pages/Register";
 import ProductPage from "./pages/ProductPage";
+import CreateBook from "./pages/CreateBook";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "product",
     element: <ProductPage />,
+  },
+  {
+    path: "book/create",
+    element: <CreateBook />,
   },
   {
     path: "/",

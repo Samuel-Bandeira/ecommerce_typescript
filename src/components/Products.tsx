@@ -1,5 +1,22 @@
 import Product from "./Product";
 
+// interface BookSimplifiedI {
+//   id: number;
+//   title: string;
+//   authors: Author[];
+//   images: Image[];
+//   price: number;
+//   rating: number;
+//   numberOfClientRatings: number;
+//   description: Description;
+//   reviews: Review[];
+//   pageCount: number;
+//   language: string;
+//   publishingCompany: PublishingCompany;
+//   publishingDate: Date;
+//   dimension: Dimension;
+// }
+
 interface BookI {
   id: number;
   title: string;
