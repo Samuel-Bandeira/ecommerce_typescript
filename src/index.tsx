@@ -14,6 +14,8 @@ import AddPaymentForm from "./pages/AddPaymentForm";
 import Register from "./pages/Register";
 import ProductPage from "./pages/ProductPage";
 import CreateBook from "./pages/CreateBook";
+import CreateAuthor from "./pages/CreateAuthor";
+import CreatePublisher from "./pages/CreatePublisher";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -43,12 +45,20 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "product",
+    path: "product/:id",
     element: <ProductPage />,
   },
   {
     path: "book/create",
     element: <CreateBook />,
+  },
+  {
+    path: "author/create",
+    element: <CreateAuthor />,
+  },
+  {
+    path: "publisher/create",
+    element: <CreatePublisher />,
   },
   {
     path: "/",

@@ -3,7 +3,10 @@ import { CiLocationOn } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 import Navbar from "../components/Navbar";
 import { FaLock } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 const ProductPage = () => {
+  const { id } = useParams();
+  console.log("id", id);
   const image =
     "https://m.media-amazon.com/images/I/91r5G8RxqfL._AC_UY218_.jpg";
   return (

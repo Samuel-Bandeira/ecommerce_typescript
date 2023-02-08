@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { basketActions } from "../redux/basket";
 import { IoIosArrowDown } from "react-icons/io";
 import Button from "./Button";
+import { Navigate, useNavigate } from "react-router-dom";
 interface ProductI {
   product: {
     id: string;
@@ -15,6 +16,7 @@ interface ProductI {
 const Product = ({ product }: ProductI) => {
   // const { basket } = useSelector((state: RootState) => state.basket);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const addToBasket = () => {
     console.log("in add");
     console.log(product);
@@ -29,9 +31,15 @@ const Product = ({ product }: ProductI) => {
     );
   };
 
+  const handleOpenBookPage = () => {
+    navigate(`/product/${product.id}`);
+  };
   return (
     <div>
-      <div className="bg-[#f8f8f8] flex justify-center px-2 pt-8">
+      <div
+        className="bg-[#f8f8f8] flex justify-center px-2 pt-8"
+        onClick={handleOpenBookPage}
+      >
         <img src={product.image} alt="book_cover" className="h-60" />
       </div>
       <div className="bg-white px-2">

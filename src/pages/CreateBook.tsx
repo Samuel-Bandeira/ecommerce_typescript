@@ -1,12 +1,14 @@
 import { useFieldArray, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Select from "../components/Select";
 
 const CreateBook = () => {
-  const authors = ["Author A", "Author B", "Author C"];
-  //   const authors = null;
-  const publishers = ["Publisher A", "Publisher B", "Publisher C"];
-  //   const publishers = null;
+  const navigate = useNavigate();
+  // const authors = ["Author A", "Author B", "Author C"];
+  const authors = null;
+  // const publishers = ["Publisher A", "Publisher B", "Publisher C"];
+  const publishers = null;
   const languages = ["Portuguese", "English", "French"];
   const { control, register } = useForm({
     defaultValues: {
@@ -31,6 +33,14 @@ const CreateBook = () => {
     name: "images",
     control,
   });
+
+  const handleGoToAuthorCreatePage = () => {
+    navigate("/author/create");
+  };
+
+  const handleGoToCreatePublisherPage = () => {
+    navigate("/publisher/create");
+  };
   return (
     <div>
       <p className="font-bold text-[30px] mb-4">Add Book</p>
@@ -39,18 +49,19 @@ const CreateBook = () => {
         {authors ? (
           <Select label="Author" options={authors} />
         ) : (
-          <div>
+          <div className="flex space-x-2">
             <p>We do not have authors</p>
             <button
               className="border border-gray-500 px-2 rounded-lg"
               type="button"
+              onClick={handleGoToAuthorCreatePage}
             >
               + Author
             </button>
           </div>
         )}
         {/* How we can select multiple files? and have previews of them? */}
-        <div className="border border-black w-full py-5">
+        <div className="w-full">
           <div className="flex space-x-2 mb-2">
             <p className="font-bold text-xl">Images</p>
             <button
@@ -98,18 +109,19 @@ const CreateBook = () => {
         {publishers ? (
           <Select label="Publishers" options={publishers} />
         ) : (
-          <div>
+          <div className="flex space-x-2">
             <p>We do not have any publishers</p>
             <button
               className="border border-gray-500 px-2 rounded-lg"
               type="button"
+              onClick={handleGoToCreatePublisherPage}
             >
               + Publisher
             </button>
           </div>
         )}
         {/* Paragraphs can me made with react form hooks array */}
-        <div className="border border-black w-full py-5">
+        <div className="w-full">
           <div className="flex space-x-2 mb-2">
             <p className="font-bold text-xl">Description</p>
             <button
